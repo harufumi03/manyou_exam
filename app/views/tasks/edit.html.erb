@@ -1,0 +1,42 @@
+<ul>
+  <li><%= link_to "Tasks Index", tasks_path, id: "tasks-index" %></li>
+  <li><%= link_to "New Task", new_task_path, id: "new-task" %></li>
+</ul>
+
+<h1><%= "Edit Task Page" %></h1>
+
+<%# <%= render 'form', task: @task %>
+
+<%# <br> %>
+<%= form_with(model: @task, local: true) do |f| %>
+  <% if @task.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@task.errors.count, "error") %> prohibited this <%= @task.name %> from being saved:</h2>
+      <ul>
+      <% @task.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div id="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div><br>
+
+  <div id="field">
+    <%= f.label :content %><br>
+    <%= f.text_area :content %>
+  </div><br>
+
+  <div id="update-user">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+
+<%= link_to t('common.back'), tasks_path, id: "back" %>
+
+
+

@@ -10,8 +10,10 @@ module CdpWebManyoTask
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
-
+    config.i18n.default_locale = :ja
     config.generators do |g|
+    config.time_zone = 'Asia/Tokyo'
+    config.active_record.default_timezone = :local
       g.assets false
       g.helper false
       g.test_framework :rspec,

@@ -12,4 +12,9 @@ FactoryBot.define do
     title { 'メール送信' }
     content { '顧客へ営業のメールを送る。' }
   end
+
+  factory :third_task, class: Task do
+    title { 'task3' }
+    content { '顔が怖い' }
+  end
 end

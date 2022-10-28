@@ -50,4 +50,9 @@ ja:
       default: "%Y/%m/%d"
   time:
     formats:
+<<<<<<< HEAD
       default: "%y/%m/%d %H:%M"
+=======
+      default: "%y/%m/%d %H:%M"
+    
+>>>>>>> master

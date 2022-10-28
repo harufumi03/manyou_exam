@@ -1,4 +1,4 @@
-<h1><%= "Edit Task Page" %></h1>
+<h1><%= t('.title') %></h1>
 
 <%# <%= render 'form', task: @task %>
 
@@ -26,7 +26,7 @@
   </div><br>
 
   <div>
-    <%= f.submit ('Update Task'), id: "update-task" %>
+    <%= f.submit id: "update-task" %>
   </div>
 <% end %>
 

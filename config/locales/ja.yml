@@ -27,7 +27,7 @@ ja:
       models:
         task:
           attributes:
-            title:
+            title: 
               blank: "を入力してください"
             content:
               blank: "を入力してください"

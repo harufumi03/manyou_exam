@@ -12,13 +12,28 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :title %><br>
+    <%= form.label :title %>
     <%= form.text_field :title %>
   </div><br>
 
   <div class="field">
-    <%= form.label :content %><br>
+    <%= form.label :content %>
     <%= form.text_area :content %>
+  </div><br>
+
+  <div class="deadline">
+    <%= form.label :deadline_on %>
+    <%= form.date_field :deadline_on %>
+  </div><br>
+
+  <div class="priority">
+    <%= form.label :priority %>
+    <%= form.select :priority, [ "低", "中", "高" ], {include_blank: true} %>
+  </div><br>
+
+  <div class="status">
+    <%= form.label :status %>
+    <%= form.select :status, [ "未着手", "着手中", "完了" ], {include_blank: true} %>
   </div><br>
 
   <div class="actions">

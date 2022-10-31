@@ -1,32 +1,5 @@
 <h1><%= t('.title') %></h1>
 
-<%# <%= render 'form', task: @task %> 
-<%= form_with(model: @task, local: true) do |f| %>
-  <% if @task.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
-      <ul>
-      <% @task.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div id="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </div>
-
-  <div id="field">
-    <%= f.label :content %><br>
-    <%= f.text_area :content %>
-  </div>
-
-  <div id="create-task">
-    <%= f.submit %>
-  </div>
-<% end %>
-
+<%= render 'form', task: @task %>
 
 <%= link_to t('common.back'), tasks_path, id: "back" %>

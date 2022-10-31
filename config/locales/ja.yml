@@ -23,6 +23,9 @@ ja:
         title: "タイトル"
         content: "内容" 
         created_at: "作成日時"
+        deadline_on: "終了期限"
+        priority: "優先度"
+        status: "ステータス"
     errors:
       models:
         task:
@@ -31,6 +34,12 @@ ja:
               blank: "を入力してください"
             content:
               blank: "を入力してください"
+            deadline_on:
+              blank: "を入力してください"
+            priority:
+              blank: "を入力してください"
+            status:
+              blank: "を入力してください"      
   
   helpers:
     submit:
@@ -50,9 +59,4 @@ ja:
       default: "%Y/%m/%d"
   time:
     formats:
-<<<<<<< HEAD
       default: "%y/%m/%d %H:%M"
-=======
-      default: "%y/%m/%d %H:%M"
-    
->>>>>>> master

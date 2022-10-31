@@ -2,7 +2,23 @@ class TasksController < ApplicationController
   before_action :set_task, only: [ :show, :edit, :update, :destroy ]
 
   def index
-    @tasks = Task.all.order(created_at: "DESC").page(params[:page])
+    @tasks = Task.all.created.page(params[:page])  
+    if params[:task].present?
+      title = params[:task][:title]
+      status = params[:task][:status]
+      if title.present? && status.present?
+        @tasks = Task.title_status(title, status).page(params[:page])
+      elsif title.present?
+        @tasks = Task.title(title).page(params[:page])
+      elsif status.present?
+        @tasks = Task.status(status).page(params[:page])
+      end
+    end
+    if params[:sort_deadline_on]
+      @tasks = Task.sort_deadline_on.page(params[:page]) 
+    elsif params[:sort_priority]
+      @tasks = Task.sort_priority.page(params[:page]) 
+    end
   end
 
   def new
@@ -40,6 +56,7 @@ class TasksController < ApplicationController
     flash[:notice] = t('.destroyed')
   end
 
+
   private
 
   def set_task
@@ -47,6 +64,6 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:title, :content)
+    params.require(:task).permit(:title, :content, :deadline_on, :priority, :status)
   end
 end

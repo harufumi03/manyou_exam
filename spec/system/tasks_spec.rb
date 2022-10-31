@@ -37,8 +37,8 @@ RSpec.describe 'タスク管理機能', type: :system do
         it "終了期限昇順に並び替えられたタスク一覧が表示される" do
           # allメソッドを使って複数のテストデータの並び順を確認する
           visit tasks_path
-          sleep 1
           click_on '終了期限'
+          sleep 1
           task_list = all('tbody tr')
           expect(task_list[0]).to have_content '2025-02-17'
           expect(task_list[1]).to have_content '2025-02-18'

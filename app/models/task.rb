@@ -12,7 +12,8 @@ class Task < ApplicationRecord
 
   scope :created, -> {order(created_at: "DESC")}
 
-  scope :title, ->(title) {where("title like ?", "%#{title}%")}
+  scope :title, -> (title) {where("title like ?", "%#{title}%")}
   scope :status, -> (status) { where(status: status) }
   scope :title_status, -> (title, status) {where("title like ?", "%#{title}%").where(status: status)}
+  belongs_to :user
 end

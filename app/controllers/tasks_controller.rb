@@ -72,8 +72,8 @@ class TasksController < ApplicationController
   end
 
   def correct_user
-    user_id = Task.find(params[:id]).user_id
-    redirect_to tasks_path, notice: "アクセス権限がありません" unless current_user?(user_id)
+    @user = Task.find(params[:id])
+    redirect_to tasks_path, notice: "アクセス権限がありません" unless current_user?(@user)
   end
 end
 

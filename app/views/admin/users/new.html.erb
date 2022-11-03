@@ -18,7 +18,9 @@
   <%= f.password_field :password %>
   <%= f.label :password_confirmation %>
   <%= f.password_field :password_confirmation %>
-  <%# <%= f.label "管理者権限"
-  <%# <%= f.check_box :password_confirmation %><br>
+  <%= f.label "管理者権限" %>
+  <%= f.check_box :admin %><br>
   <%= f.submit id: "create-user" %>
 <% end %>
+
+<%= link_to "戻る", admin_users_path(@user.id), id: "back" %>

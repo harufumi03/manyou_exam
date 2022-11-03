@@ -1,6 +1,32 @@
 <h1><%= t('.title') %></h1>
 <p>名前: <%= @user.name %></p>
 <p>メールアドレス: <%= @user.email %></p>
+<p>管理者権限: <%= @user.admin ? 'あり' : 'なし' %></p>
 
+<table>
+  <thead>
+    <tr>
+      <th><%= Task.human_attribute_name(:title) %></th>
+      <th><%= Task.human_attribute_name(:content) %></th>
+      <th><%= Task.human_attribute_name(:created_at) %></th>
+      <th><%= link_to "終了期限", sort_deadline_on: true %></th>
+      <th><%= link_to "優先度", sort_priority: true %></th>
+      <th><%= Task.human_attribute_name(:status) %></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user.tasks.each do |task| %>
+      <tr>
+        <td><%= task.title %></td>
+        <td><%= task.content %></td>
+        <td><%= l task.created_at %></td>
+        <td><%= task.deadline_on %></td>
+        <td><%= task.priority %></td>
+        <td><%= task.status %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
 <%= link_to "戻る", admin_users_path(@user.id), id: "back" %>

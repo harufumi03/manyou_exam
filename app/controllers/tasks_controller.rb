@@ -1,8 +1,10 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [ :show, :edit, :update, :destroy ]
+  skip_before_action :logout_required
 
   def index
-    @tasks = Task.all.created.page(params[:page])  
+    @tasks = current_user.tasks
+    @tasks = @tasks.created.page(params[:page])  
     if params[:task].present?
       title = params[:task][:title]
       status = params[:task][:status]

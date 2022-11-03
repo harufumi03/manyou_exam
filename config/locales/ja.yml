@@ -14,16 +14,6 @@ ja:
       updated: "タスクを更新しました"
     destroy:
       destroyed: "タスクを削除しました"
-  users:
-    new:
-      title: "アカウント登録ページ"
-    edit:
-      title: "アカウント編集ページ"
-    show:
-      title: "アカウント詳細ページ"  
-  sessions:
-    new:
-      title: "ログインページ"                
   activerecord:
     models:
       task: "タスク"
@@ -35,14 +25,6 @@ ja:
         deadline_on: "終了期限"
         priority: "優先度"
         status: "ステータス"
-    models:
-      user: "ユーザー"
-    attributes:
-      user:
-        name: "名前"
-        email: "メールアドレス"
-        password: "パスワード"
-        password_confirmation: "パスワード（確認）"
     errors:
       models:
         task:
@@ -57,6 +39,75 @@ ja:
               blank: "を入力してください"
             status:
               blank: "を入力してください"
+  users:
+    new:
+      title: "アカウント登録ページ"
+    edit:
+      title: "アカウント編集ページ"
+    show:
+      title: "アカウント詳細ページ"
+  activerecord:
+    models:
+      user: "ユーザー"
+    attributes:
+      user:
+        name: "名前"
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "パスワード（確認）" 
+    errors:
+      models:
+        user:
+          attributes:
+            name: 
+              blank: "を入力してください"
+            email:
+              blank: "を入力してください"
+              invalid: "はすでに使用されています"
+            password:
+              blank: "を入力してください"
+              too_short: "は6文字以上で入力してください"
+            password_confirmation:
+              confirmation: "とパスワードの入力が一致しません"  
+  admin:
+    users:  
+      show:
+        title: "ユーザ詳細ページ" 
+      edit:
+        title: "ユーザ編集ページ"
+      new:
+        title: "ユーザ登録ページ"
+      index:
+        title: "ユーザ一覧ページ"  
+  activerecord:
+    attributes:
+      admin:
+        title: "タイトル"
+        content: "内容" 
+        created_at: "作成日時"
+        deadline_on: "終了期限"
+        priority: "優先度"
+        status: "ステータス" 
+        name: "名前"
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "パスワード（確認）"                               
+        
+            
+  
+  
+  
+  sessions:
+    new:
+      title: "ログインページ" 
+    models:
+      user: "ユーザー"
+    attributes:
+      user:
+        name: "名前"
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "パスワード（確認）"
   helpers:
     submit:
       create: 登録する

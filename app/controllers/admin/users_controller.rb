@@ -1,6 +1,9 @@
 class Admin::UsersController < ApplicationController
   before_action :is_not_admin
+  skip_before_action :login_required, only: [:new, :create]
   skip_before_action :logout_required
+  before_action :only_one_destroy, only: [:destroy]
+  before_action :only_one_update, only: [:update]
   
   def index
     @users = User.all
@@ -22,6 +25,7 @@ class Admin::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @tasks = current_user.tasks
   end
 
   def edit
@@ -31,8 +35,7 @@ class Admin::UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      redirect_to admin_user_path(@user)
-      flash[:notice] = 'ユーザを更新しました'
+      redirect_to admin_users_path, notice: 'ユーザを更新しました'
     else
       render :edit
     end
@@ -41,8 +44,7 @@ class Admin::UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-    redirect_to admin_users_path
-    flash[:notice] = 'ユーザを削除しました'
+    redirect_to admin_users_path, notice: 'ユーザを削除しました' 
   end
 
   private
@@ -53,6 +55,20 @@ class Admin::UsersController < ApplicationController
 
   def is_not_admin
     redirect_to tasks_path, notice: "管理者以外はアクセスできません" unless admin_user?
+  end
+
+  def only_one_destroy
+    @user = User.find(params[:id])
+    if User.where(admin: 'true').count == 1 && @user.admin == true
+      redirect_to admin_users_path, notice: "管理者が0人になるため削除できません"
+    end
+  end
+
+  def only_one_update
+    @user = User.find(params[:id])
+    if User.where(admin: 'true').count == 1 && @user.admin == true
+      redirect_to admin_users_path, notice: "管理者が0人になるため権限を変更できません"
+    end  
   end
 
 end

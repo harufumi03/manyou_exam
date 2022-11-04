@@ -10,7 +10,7 @@
   <%= f.label :password_confirmation, "パスワード（確認）" %>
   <%= f.password_field :password_confirmation %>
   <%= f.label "管理者権限" %>
-  <%= f.check_box :admin %><br>
+  <%= f.check_box :admin, id: "check_admin" %><br>
   <%= f.submit "更新する", id: "update-user" %>
 <% end %>
 

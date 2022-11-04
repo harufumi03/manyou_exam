@@ -19,7 +19,7 @@
   <%= f.label :password_confirmation %>
   <%= f.password_field :password_confirmation %>
   <%= f.label "管理者権限" %>
-  <%= f.check_box :admin %><br>
+  <%= f.check_box :admin, id: "check_admin" %><br>
   <%= f.submit id: "create-user" %>
 <% end %>
 

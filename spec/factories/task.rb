@@ -9,6 +9,7 @@ FactoryBot.define do
     deadline_on {'2025-02-18'}
     priority {'中'}
     status {'未着手'}
+    user_id {'1'}
   end
   # 作成するテストデータの名前を「second_task」とします
   # 「second_task」のように存在しないクラス名をつける場合、`class`オプションを使ってどのクラスのテストデータを作成するかを明示する必要がります

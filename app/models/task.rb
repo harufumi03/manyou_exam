@@ -6,7 +6,7 @@ class Task < ApplicationRecord
   validates :status, presence: true
   enum priority: [ "低", "中", "高" ]
   enum status: [ "未着手", "着手中", "完了" ]
-
+  
   scope :sort_deadline_on, -> {order(deadline_on: :asc)}
   scope :sort_priority, -> {order(priority: :desc)}
 

@@ -1,8 +1,12 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [ :show, :edit, :update, :destroy ]
+  skip_before_action :login_required, only: [:new, :create]
+  skip_before_action :logout_required
+  before_action :correct_user, only: [:show, :edit]
 
   def index
-    @tasks = Task.all.created.page(params[:page])  
+    @tasks = current_user.tasks
+    @tasks = @tasks.created.page(params[:page])  
     if params[:task].present?
       title = params[:task][:title]
       status = params[:task][:status]
@@ -27,6 +31,7 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
+    @task.user_id = current_user.id
     if @task.save
       redirect_to tasks_path
       flash[:notice] = t('.created')
@@ -66,4 +71,10 @@ class TasksController < ApplicationController
   def task_params
     params.require(:task).permit(:title, :content, :deadline_on, :priority, :status)
   end
+
+  def correct_user
+    @user = Task.find(params[:id])
+    redirect_to tasks_path, notice: "アクセス権限がありません" unless current_user?(@user)
+  end
 end
+

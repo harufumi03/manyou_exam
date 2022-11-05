@@ -14,8 +14,22 @@
       <%= content_tag(:div, value, class: "#{key}") %>
     <% end %>
     <ul>
+    <% if logged_in? && admin_user? %>
+      <li><%= link_to t('ユーザ一覧'), admin_users_path, id: "users-index" %></li> 
+      <li><%= link_to t('ユーザを登録する'), new_admin_user_path, id: "add-user" %></li> 
+      <li><%= link_to t('common.task_index'), tasks_path, id: "tasks-index" %></li> 
+      <li><%= link_to t('common.new_task'), new_task_path, id: "new-task" %></li> 
+      <li><%= link_to t('common.my_account'), user_path(current_user.id), id: "my-account" %></li> 
+      <li><%= link_to t('common.sign_out'), session_path(current_user.id), method: :delete, id: "sign-out" %></li> 
+    <% elsif logged_in? %>
       <li><%= link_to t('common.task_index'), tasks_path, id: "tasks-index" %></li>
       <li><%= link_to t('common.new_task'), new_task_path, id: "new-task" %></li>
+      <li><%= link_to t('common.my_account'), user_path(current_user.id), id: "my-account" %></li>
+      <li><%= link_to t('common.sign_out'), session_path(current_user.id), method: :delete, id: "sign-out" %></li>
+    <% else %>
+      <li><%= link_to t('common.sign_up'), new_user_path, id: "sign-up" %></li>
+      <li><%= link_to t('common.sign_in'), new_session_path, id: "sign-in" %></li>
+    <% end %>
     </ul>
     <%= yield %>
   </body>

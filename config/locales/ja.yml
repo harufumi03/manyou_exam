@@ -13,11 +13,33 @@ ja:
     update:
       updated: "タスクを更新しました"
     destroy:
-      destroyed: "タスクを削除しました"     
-  
+      destroyed: "タスクを削除しました"
+  users:
+    new:
+      title: "アカウント登録ページ"
+    edit:
+      title: "アカウント編集ページ"
+    show:
+      title: "アカウント詳細ページ"  
+  sessions:
+    new:
+      title: "ログインページ"
+  admin:
+    users:
+      index: 
+        title: "ユーザ一覧ページ" 
+        name: "名前"
+        email: "メールアドレス"  
+      edit:
+        title: "ユーザ編集ページ" 
+      new:
+        title: "ユーザ登録ページ"
+      show:
+        title: "ユーザ詳細ページ"                            
   activerecord:
     models:
       task: "タスク"
+      user: "ユーザー"
     attributes:
       task:
         title: "タイトル"
@@ -26,9 +48,15 @@ ja:
         deadline_on: "終了期限"
         priority: "優先度"
         status: "ステータス"
+      user:
+        name: "名前"
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "パスワード（確認）"
     errors:
       models:
         task:
+        user:
           attributes:
             title: 
               blank: "を入力してください"
@@ -39,8 +67,22 @@ ja:
             priority:
               blank: "を入力してください"
             status:
-              blank: "を入力してください"      
-  
+              blank: "を入力してください"
+            name:
+              blank: "を入力してください"
+            email:
+              blank: "を入力してください"
+              invalid: "はすでに使用されています"
+            password:
+              blank: "を入力してください"
+              too_short: "は6文字以上で入力してください"      
+            password_confirmation:
+              confirmation: "とパスワードの入力が一致しません"
+    
+    
+    
+    
+    
   helpers:
     submit:
       create: 登録する
@@ -54,6 +96,12 @@ ja:
     confirm_destroy: 本当に削除してもよろしいですか？
     task_index: タスク一覧
     new_task: タスクを登録する
+    sign_up: アカウント登録
+    sign_in: ログイン
+    my_account: アカウント詳細
+    sign_out: ログアウト
+    email: メールアドレス
+    password: パスワード
   date:
     formats:
       default: "%Y/%m/%d"

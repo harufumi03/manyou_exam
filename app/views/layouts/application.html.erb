@@ -13,28 +13,51 @@
     <% flash.each do |key, value| %>
       <%= content_tag(:div, value, class: "#{key}") %>
     <% end %>
-    <ul>
-    <% if logged_in? && admin_user? %>
-      <li><%= link_to t('ユーザ一覧'), admin_users_path, id: "users-index" %></li> 
-      <li><%= link_to t('ユーザを登録する'), new_admin_user_path, id: "add-user" %></li> 
-      <li><%= link_to t('common.task_index'), tasks_path, id: "tasks-index" %></li> 
-      <li><%= link_to t('common.new_task'), new_task_path, id: "new-task" %></li> 
-      <li><%= link_to t('ラベル一覧'), labels_path, id: "labels-index" %></li>
-      <li><%= link_to t('ラベルを登録する'), new_label_path, id: "new-label" %></li>
-      <li><%= link_to t('common.my_account'), user_path(current_user.id), id: "my-account" %></li> 
-      <li><%= link_to t('common.sign_out'), session_path(current_user.id), method: :delete, id: "sign-out" %></li> 
-    <% elsif logged_in? %>
-      <li><%= link_to t('common.task_index'), tasks_path, id: "tasks-index" %></li>
-      <li><%= link_to t('common.new_task'), new_task_path, id: "new-task" %></li>
-      <li><%= link_to t('ラベル一覧'), labels_path, id: "labels-index" %></li>
-      <li><%= link_to t('ラベルを登録する'), new_label_path, id: "new-label" %></li>
-      <li><%= link_to t('common.my_account'), user_path(current_user.id), id: "my-account" %></li>
-      <li><%= link_to t('common.sign_out'), session_path(current_user.id), method: :delete, id: "sign-out" %></li>
-    <% else %>
-      <li><%= link_to t('common.sign_up'), new_user_path, id: "sign-up" %></li>
-      <li><%= link_to t('common.sign_in'), new_session_path, id: "sign-in" %></li>
-    <% end %>
-    </ul>
-    <%= yield %>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">Task-App</a>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav ml-auto py-1 py-lg-0">
+          <% if logged_in? && admin_user? %>
+            <a class = "nav-link px-lg-3 py-3 py-lg-4">
+            <%= link_to t('ユーザ一覧'), admin_users_path, id: "users-index" %></a>
+            <a class = "nav-link px-lg-3 py-3 py-lg-4">
+            <%= link_to t('ユーザを登録する'), new_admin_user_path, id: "add-user" %></a> 
+            <a class = "nav-link px-lg-3 py-3 py-lg-4">
+            <%= link_to t('common.task_index'), tasks_path, id: "tasks-index" %></a>
+            <a class = "nav-link px-lg-3 py-3 py-lg-4">
+            <%= link_to t('common.new_task'), new_task_path, id: "new-task" %></a>
+            <a class = "nav-link px-lg-3 py-3 py-lg-4">
+            <%= link_to t('ラベル一覧'), labels_path, id: "labels-index" %></a>
+            <a class = "nav-link px-lg-3 py-3 py-lg-4">
+            <%= link_to t('ラベルを登録する'), new_label_path, id: "new-label" %></a>
+            <a class = "nav-link px-lg-3 py-3 py-lg-4">
+            <%= link_to t('common.my_account'), user_path(current_user.id), id: "my-account" %></a> 
+            <a class = "nav-link px-lg-3 py-3 py-lg-4">
+            <%= button_to t('common.sign_out'), session_path(current_user.id), method: :delete, id: "sign-out", class: "btn btn-sm btn-info" %></a> 
+          <% elsif logged_in? %>
+            <a class = "nav-link px-lg-3 py-3 py-lg-4">
+            <%= link_to t('common.task_index'), tasks_path, id: "tasks-index" %></a> 
+            <a class = "nav-link px-lg-3 py-3 py-lg-4">
+            <%= link_to t('common.new_task'), new_task_path, id: "new-task" %></a> 
+            <a class = "nav-link px-lg-3 py-3 py-lg-4">
+            <%= link_to t('ラベル一覧'), labels_path, id: "labels-index" %></a> 
+            <a class = "nav-link px-lg-3 py-3 py-lg-4">
+            <%= link_to t('ラベルを登録する'), new_label_path, id: "new-label" %></a> 
+            <a class = "nav-link px-lg-3 py-3 py-lg-4">
+            <%= link_to t('common.my_account'), user_path(current_user.id), id: "my-account" %></a> 
+            <a class = "nav-link px-lg-3 py-3 py-lg-4">
+            <%= link_to t('common.sign_out'), session_path(current_user.id), method: :delete, id: "sign-out" %></a> 
+          <% else %>
+            <a class = "nav-link px-lg-3 py-3 py-lg-4">
+            <%= link_to t('common.sign_up'), new_user_path, id: "sign-up" %></a> 
+            <a class = "nav-link px-lg-3 py-3 py-lg-4">
+            <%= link_to t('common.sign_in'), new_session_path, id: "sign-in" %></a> 
+          <% end %>
+        </div>
+      </div>
+    </nav>      
+    <div class = "container">
+      <%= yield %>
+    </div>  
   </body>
 </html>

@@ -13,27 +13,27 @@
 
   <div class="field">
     <%= form.label :title %>
-    <%= form.text_field :title %>
+    <%= form.text_field :title, class: "form-control" %>
   </div><br>
 
   <div class="field">
     <%= form.label :content %>
-    <%= form.text_area :content %>
+    <%= form.text_area :content, class: "form-control" %>
   </div><br>
 
   <div class="deadline">
     <%= form.label :deadline_on %>
-    <%= form.date_field :deadline_on %>
+    <%= form.date_field :deadline_on, class: "form-control" %>
   </div><br>
 
   <div class="priority">
     <%= form.label :priority %>
-    <%= form.select :priority, [ "低", "中", "高" ], {include_blank: true} %>
+    <%= form.select :priority, [ "低", "中", "高" ], {include_blank: true}, class: "form-control" %>
   </div><br>
 
   <div class="status">
     <%= form.label :status %>
-    <%= form.select :status, [ "未着手", "着手中", "完了" ], {include_blank: true} %>
+    <%= form.select :status, [ "未着手", "着手中", "完了" ], {include_blank: true}, class: "form-control" %>
   </div><br>
 
   <div class="field">
@@ -45,7 +45,7 @@
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: "btn btn-sm btn-info" %>
   </div>
 
 <% end %>

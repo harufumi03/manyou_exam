@@ -1,6 +1,6 @@
 <h1><%= t('.title') %></h1>
 
-<table>
+<table class = "table">
   <thead>
     <tr>
       <th><%= '名前' %></th>
@@ -13,8 +13,8 @@
       <tr>
         <td><%= label.name%></td>
         <td><%= label.tasks.count %></td>
-        <td><%= link_to t('common.edit'), edit_label_path(label), class: "edit-label" %></td>
-        <td><%= link_to t('common.destroy'), label_path(label), method: :delete, data: { confirm: t('common.confirm_destroy') }, class: "destroy-label"  %></td>
+        <td><%= link_to t('common.edit'), edit_label_path(label), class: "edit-label btn btn-sm btn-success" %></td>
+        <td><%= link_to t('common.destroy'), label_path(label), method: :delete, data: { confirm: t('common.confirm_destroy') }, class: "destroy-label btn btn-sm btn-danger"  %></td>
       </tr>
     <% end %>
   </tbody>

@@ -17,4 +17,4 @@ require("channels")
 // const imagePath = (name) => images(name, true)
 import 'bootstrap';
 import '../stylesheets/styles';
-import './scripts';
+// import './scripts';

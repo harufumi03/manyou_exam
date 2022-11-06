@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [ :show, :edit, :update, :destroy ]
-  # skip_before_action :login_required, only: [:new, :create]
+  skip_before_action :login_required, only: [:new, :create]
   skip_before_action :logout_required
   before_action :correct_user, only: [:show, :edit]
 
@@ -69,11 +69,11 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:title, :content, :deadline_on, :priority, :status)
+    params.require(:task).permit(:title, :content, :deadline_on, :priority, :status, :user_id, { label_ids: [] })
   end
 
   def correct_user
-    @user = Task.find(params[:id])
+    @user = Task.find(params[:id]).user_id
     redirect_to tasks_path, notice: "アクセス権限がありません" unless current_user?(@user)
   end
 end

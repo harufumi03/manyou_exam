@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  # skip_before_action :login_required, only: [:new, :create]
+  skip_before_action :login_required, only: [:new, :create]
   skip_before_action :logout_required, except: [:new, :create]
   before_action :correct_user, only: [:show, :edit]
 
@@ -37,11 +37,11 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :admin)
   end
 
   def correct_user
-    @user = User.find(params[:id])
+    @user = User.find(params[:id]).id
     redirect_to tasks_path, notice: 'アクセス権限がありません' unless current_user?(@user)
   end
 end

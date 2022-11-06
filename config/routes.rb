@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'sessions#new'
+  root 'tasks#index'
   resources :tasks, only: [:index, :new, :create, :show, :edit, :update, :destroy]
   resources :sessions, only: [:new, :create, :destroy]
   resources :users, only: [:index, :new, :create, :show, :edit, :update, :destroy]
@@ -8,5 +8,5 @@ Rails.application.routes.draw do
     resources :users
   end
 
-  # get '*path', to: 'application#render_404'
+  get '*path', to: 'application#render_404'
 end

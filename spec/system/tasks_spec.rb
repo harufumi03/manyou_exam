@@ -12,8 +12,8 @@ RSpec.describe 'タスク管理機能', type: :system do
   end
   describe '登録機能' do
     context 'タスクを登録した場合' do
-      it '登録したタスクが表示される' do        
-        click_on 'タスクを登録する'
+      it '登録したタスクが表示される' do
+        visit new_task_path
         fill_in 'タイトル', with: 'task1'
         fill_in '内容', with: 'sample1'
         fill_in '終了期限', with: '002025-02-18'
@@ -116,8 +116,25 @@ RSpec.describe 'タスク管理機能', type: :system do
         expect(page).to have_content 'first_task'
         expect(page).to have_content '未着手'
         expect(page).not_to have_content 'second_task'
+        # toとnot_toのマッチャを使って表示されるものとされないものの両方を確認すend
+      end
+    end
+  end  
+
+  describe '検索機能' do
+    let!(:label) { FactoryBot.create(:label) }
+    let!(:first) { FactoryBot.create(:task, user_id: @current_user.id) }
+    let!(:second) { FactoryBot.create(:second_task, user_id: @current_user.id, label_ids: label.id)} 
+    context 'ラベルで検索をした場合' do
+      it "そのラベルの付いたタスクがすべて表示される" do
+        visit tasks_path
+        sleep 1
+        select 'test', from: 'task_label_id'
+        click_button '検索'
+        expect(page).to have_content 'second_task'
+        expect(page).not_to have_content 'first_task'
         # toとnot_toのマッチャを使って表示されるものとされないものの両方を確認する
       end
     end
-  end
+  end  
 end

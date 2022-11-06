@@ -41,7 +41,7 @@ class UsersController < ApplicationController
   end
 
   def correct_user
-    @user = User.find(params[:id]).id
+    @user = User.find(params[:id])
     redirect_to tasks_path, notice: 'アクセス権限がありません' unless current_user?(@user)
   end
 end

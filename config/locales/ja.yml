@@ -35,7 +35,14 @@ ja:
       new:
         title: "ユーザ登録ページ"
       show:
-        title: "ユーザ詳細ページ"                            
+        title: "ユーザ詳細ページ" 
+  labels:
+    index:
+      title: "ラベル一覧ページ"
+    new:
+      title: "ラベル登録ページ"
+    edit:
+      title: "ラベル編集ページ"                                     
   activerecord:
     models:
       task: "タスク"

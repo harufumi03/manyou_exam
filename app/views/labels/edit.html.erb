@@ -3,10 +3,10 @@
 <%= form_with(model: @label, local: true) do |form| %>
   <% if @label.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(label.errors.count, "件の") %> エラーがあります</h2>
+      <h2><%= pluralize(@label.errors.count, "件の") %> エラーがあります</h2>
 
       <ul>
-        <% label.errors.full_messages.each do |message| %>
+        <% @label.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
       </ul>

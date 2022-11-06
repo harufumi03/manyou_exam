@@ -7,15 +7,22 @@ class TasksController < ApplicationController
   def index
     @tasks = current_user.tasks
     @tasks = @tasks.created.page(params[:page])  
+    # if params[:task].present? 
+    #   label = params[:task][:label_id]
+    #   @tasks = Task.label(label).page(params[:page])
+    # end  
     if params[:task].present?
       title = params[:task][:title]
       status = params[:task][:status]
+      label = params[:task][:label_id]
       if title.present? && status.present?
         @tasks = Task.title_status(title, status).page(params[:page])
       elsif title.present?
         @tasks = Task.title(title).page(params[:page])
       elsif status.present?
         @tasks = Task.status(status).page(params[:page])
+      elsif label.present?
+        @tasks = Task.label(label).page(params[:page])  
       end
     end
     if params[:sort_deadline_on]

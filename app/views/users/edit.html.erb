@@ -2,14 +2,14 @@
 
 <%= form_with(model: @user, local: true) do |f| %>
   <%= f.label :name, "名前" %>
-  <%= f.text_field :name %>
+  <%= f.text_field :name, class: "form-control" %>
   <%= f.label :email, "メールアドレス" %>
-  <%= f.email_field :email %>
+  <%= f.email_field :email, class: "form-control" %>
   <%= f.label :password, "パスワード" %>
-  <%= f.password_field :password %>
+  <%= f.password_field :password, class: "form-control" %>
   <%= f.label :password_confirmation, "パスワード（確認）" %>
-  <%= f.password_field :password_confirmation %><br>
-  <%= f.submit "更新する", id: "update-user" %>
+  <%= f.password_field :password_confirmation, class: "form-control" %><br>
+  <%= f.submit "更新する", id: "update-user btn btn-sm btn-info" %>
 <% end %>
 
 <%= link_to "戻る", user_path(@user.id), id: "back" %>

@@ -3,15 +3,17 @@
 <div class="search_form">
   <%= form_with(scope: :task, method: :get, local: true) do |f| %>
     <%= f.label(:status, Task.human_attribute_name(:status)) %>
-    <%= f.select :status, [ "未着手", "着手中", "完了" ], {include_blank: true} %>
+    <%= f.select :status, [ "未着手", "着手中", "完了" ], {include_blank: true}, class: "form-control" %>
     <%= f.label(:title, Task.human_attribute_name(:title)) %>
-    <%= f.text_field :title %><br>
-    <%= f.submit "検索", id: "search_task"%>
+    <%= f.text_field :title, class: "form-control" %><br>
+    <%= f.label "ラベル"%>
+    <%= f.select("label_id", Label.pluck(:name, :id), { include_blank: true }, class: "form-control") %><br>
+    <%= f.submit "検索", id: "search_task", class: "btn btn-sm btn-success"%>
   <% end %>
 </div>
 
 
-<table>
+<table class = "table">
   <thead>
     <tr>
       <th><%= Task.human_attribute_name(:title) %></th>
@@ -32,9 +34,9 @@
         <td><%= task.deadline_on %></td>
         <td><%= task.priority %></td>
         <td><%= task.status %></td>
-        <td><%= link_to t('common.show'), task, class: "show-task" %></td>
-        <td><%= link_to t('common.edit'), edit_task_path(task), class: "edit-task" %></td>
-        <td><%= link_to t('common.destroy'), task_path(task), method: :delete, data: { confirm: t('common.confirm_destroy') }, class: "destroy-task"  %></td>
+        <td><%= link_to t('common.show'), task, class: "show-task btn btn-sm btn-info" %></td>
+        <td><%= link_to t('common.edit'), edit_task_path(task), class: "edit-task btn btn-sm btn-success" %></td>
+        <td><%= link_to t('common.destroy'), task_path(task), method: :delete, data: { confirm: t('common.confirm_destroy') }, class: "destroy-task btn btn-sm btn-danger"  %></td>
       </tr>
     <% end %>
   </tbody>

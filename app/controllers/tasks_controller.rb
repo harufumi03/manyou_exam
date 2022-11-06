@@ -2,7 +2,7 @@ class TasksController < ApplicationController
   before_action :set_task, only: [ :show, :edit, :update, :destroy ]
   skip_before_action :login_required, only: [:new, :create]
   skip_before_action :logout_required
-  before_action :correct_user, only: [:show, :edit]
+  # before_action :correct_user, only: [:show, :edit]
 
   def index
     @tasks = current_user.tasks
@@ -10,12 +10,15 @@ class TasksController < ApplicationController
     if params[:task].present?
       title = params[:task][:title]
       status = params[:task][:status]
+      label = params[:task][:label_id]
       if title.present? && status.present?
         @tasks = Task.title_status(title, status).page(params[:page])
       elsif title.present?
         @tasks = Task.title(title).page(params[:page])
       elsif status.present?
         @tasks = Task.status(status).page(params[:page])
+      elsif label.present?
+        @tasks = Task.label(label).page(params[:page])  
       end
     end
     if params[:sort_deadline_on]
@@ -69,12 +72,12 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:title, :content, :deadline_on, :priority, :status)
+    params.require(:task).permit(:title, :content, :deadline_on, :priority, :status, { label_ids: [] })
   end
 
-  def correct_user
-    @user = Task.find(params[:id])
-    redirect_to tasks_path, notice: "アクセス権限がありません" unless current_user?(@user)
-  end
+  # def correct_user
+  #   @user = Task.find(params[:id])
+  #   redirect_to tasks_path, notice: "アクセス権限がありません" unless current_user?(@user)
+  # end
 end
 

@@ -1,7 +1,7 @@
 <h1><%= t('.title') %></h1>
 
-<%= form_with(model: label, local: true) do |form| %>
-  <% if label.errors.any? %>
+<%= form_with(model: @label, local: true) do |form| %>
+  <% if @label.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(label.errors.count, "件の") %> エラーがあります</h2>
 

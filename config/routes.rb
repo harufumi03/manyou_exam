@@ -5,12 +5,8 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users
   end
-  resources :tasks do
-    collection do
-      get 'search'  
-    end
-  end
+  resources :tasks
+  resources :labels
 
   get '*path', to: 'application#render_404'
-
 end

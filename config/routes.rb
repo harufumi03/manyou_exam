@@ -10,4 +10,7 @@ Rails.application.routes.draw do
       get 'search'  
     end
   end
+
+  get '*path', to: 'application#render_404'
+
 end

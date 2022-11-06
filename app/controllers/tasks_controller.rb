@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [ :show, :edit, :update, :destroy ]
-  skip_before_action :login_required, only: [:new, :create]
+  # skip_before_action :login_required, only: [:new, :create]
   skip_before_action :logout_required
   before_action :correct_user, only: [:show, :edit]
 

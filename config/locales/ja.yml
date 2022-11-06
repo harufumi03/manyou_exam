@@ -47,6 +47,7 @@ ja:
     models:
       task: "タスク"
       user: "ユーザー"
+      label: "ラベル"
     attributes:
       task:
         title: "タイトル"
@@ -60,10 +61,13 @@ ja:
         email: "メールアドレス"
         password: "パスワード"
         password_confirmation: "パスワード（確認）"
+      label:
+        name: "名前"  
     errors:
       models:
         task:
         user:
+        label:
           attributes:
             title: 
               blank: "を入力してください"

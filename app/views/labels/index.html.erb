@@ -3,15 +3,15 @@
 <table>
   <thead>
     <tr>
-      <th><%= Task.human_attribute_name(:name) %></th>
-      <th><%= Task.human_attribute_name(:task) %></th>
+      <th><%= '名前' %></th>
+      <th><%= 'タスク数' %></th>
     </tr>
   </thead>
 
   <tbody>
     <% @labels.each do |label| %>
       <tr>
-        <td><%= label.name %></td>
+        <td><%= label.name%></td>
         <td><%= label.tasks.count %></td>
         <td><%= link_to t('common.edit'), edit_label_path(label), class: "edit-label" %></td>
         <td><%= link_to t('common.destroy'), label_path(label), method: :delete, data: { confirm: t('common.confirm_destroy') }, class: "destroy-label"  %></td>

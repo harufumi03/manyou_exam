@@ -14,6 +14,7 @@ module CdpWebManyoTask
     config.generators do |g|
     config.time_zone = 'Asia/Tokyo'
     config.active_record.default_timezone = :local
+    config.assets.initialize_on_precompile = false
       g.assets false
       g.helper false
       g.test_framework :rspec,

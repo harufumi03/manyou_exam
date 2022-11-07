@@ -1,17 +1,27 @@
 <h1><%= t('.title') %></h1>
+<% if @user.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@user.errors.count, "件の") %> エラーがあります</h2>
+    <ul>
+    <% @user.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
 
 <%= form_with(model: [:admin, @user], local: true) do |f| %>
   <%= f.label :name, "名前" %>
-  <%= f.text_field :name %>
+  <%= f.text_field :name, class: "form-control" %>
   <%= f.label :email, "メールアドレス" %>
-  <%= f.email_field :email %>
+  <%= f.email_field :email, class: "form-control" %>
   <%= f.label :password, "パスワード" %>
-  <%= f.password_field :password %>
+  <%= f.password_field :password, class: "form-control" %>
   <%= f.label :password_confirmation, "パスワード（確認）" %>
-  <%= f.password_field :password_confirmation %>
+  <%= f.password_field :password_confirmation, class: "form-control" %>
   <%= f.label "管理者権限" %>
   <%= f.check_box :admin, id: "check_admin" %><br>
-  <%= f.submit "更新する", id: "update-user" %>
+  <%= f.submit "更新する", id: "update-user", class: "btn btn-sm btn-info" %>
 <% end %>
 
 <%= link_to "戻る", admin_users_path, id: "back" %>
